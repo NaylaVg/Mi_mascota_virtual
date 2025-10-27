@@ -6,6 +6,9 @@ from mascota import imagen
 
 class mascotaVirtual:
     def __init__(self, nombre):
+        self.triste = imagen.triste
+        self.feliz = imagen.feliz
+        self.suciedad = 0
         pass
 
     def alimentar(self):
@@ -14,6 +17,16 @@ class mascotaVirtual:
     def jugar(self):
         pass
 
+    def bañarmascota(self):
+        if self.suciedad <= 0:
+            self.suciedad = 0
+            print(imagen.feliz)
+            print('Su mascota esta limpiecita y FILIZ! :>')
+
+        if self.suciedad >= 10:
+            print(imagen.triste)
+            print('oh no, tu mascota esta chuchia :c')  
+          
     def estado_animo(self):
         pass
 
@@ -45,7 +58,7 @@ while True:
         opcion = int(input(f"¿Qué quieres hacer con {nombre}? "))
     except ValueError:
         print("Ingresá un numerito de las opciones flaco no es muy dificil")
-        continue  # vuelve al inicio del bucle si hubo error
+        break  # vuelve al inicio del bucle si hubo error
 
     match opcion:
         case 1:
@@ -53,7 +66,7 @@ while True:
         case 2:
             mi_mascota.jugar()
         case 3:
-            mi_mascota.bañar()
+            mi_mascota.bañarmascota()
         case 4:
             mi_mascota.estado_animo()
         case 5: 
