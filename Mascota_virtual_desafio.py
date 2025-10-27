@@ -1,23 +1,48 @@
+import random
+
 # importar el modulo random
 # import imagen desde el archivo mascota.py
+import random
+from mascota import imagen
 import random
 from mascota import imagen
 
 
 class mascotaVirtual:
     def __init__(self, nombre):
+        self.nombre = nombre
+        self.felicidad = 0
+        self.hambre = 0
+        self.imagen = imagen.inicio
+        self.imagen_triste = imagen.triste
+        self.imagen_feliz = imagen.feliz
+        self.imagen_muerto = imagen.muerto
+        self.imagen_disgustado = imagen.disgustado
         self.triste = imagen.triste
         self.feliz = imagen.feliz
         self.suciedad = 0
         pass
 
     def alimentar(self):
-        pass
+        self.felicidad -= random.randint(5, 10)
+        if self.felicidad < 0:
+            self.felicidad = 0
+        if self.hambre == 0: 
+            print(self.imagen_disgustado)
+            print(self.nombre, "está lleno, no puede comer más!")
+        else:
+            self.hambre -= random.randint(5, 10)
+            if self.hambre < 0:
+                self.hambre = 0
+            print(self.imagen_feliz)
+            print(self.nombre, "ha sido alimentado!")
+
+  
 
     def jugar(self):
         pass
 
-    def bañarmascota(self):
+    def baniarmascota(self):
         if self.suciedad <= 0:
             self.suciedad = 0
             print(imagen.feliz)
@@ -30,13 +55,64 @@ class mascotaVirtual:
     def estado_animo(self):
         pass
 
-    def presentacion(self):  # opcional
+    def banarse(self):
         pass
 
-    def despedida(self):  # opcional
+    def dormir(self):
+        pass
+
+    def pasear(self):
+        pass
+
+    def presentacion(self):
+        pass
+ 
+    def despedida(self):
         pass
 
 # Crear una instancia de MascotaVirtual
+
+nombre = input("¿Cómo se llama tu mascota? ")
+mi_mascota = mascotaVirtual(nombre)
+mi_mascota.presentacion()
+
+# Menú interactivo
+
+while True:
+    print("\n--- Menú ---")
+    print("1. Alimentar")
+    print("2. Jugar")
+    print("3. Bañar")
+    print("4. Estado de animo")
+    print("5. Salir")
+
+    
+
+    try:
+        opcion = int(input(f"¿Qué quieres hacer con {nombre}? "))
+    except ValueError:
+        print("Ingresá un numerito de las opciones flaco no es muy dificil")
+        break  # vuelve al inicio del bucle si hubo error
+
+    match opcion:
+        case 1:
+            mi_mascota.alimentar()
+        case 2:
+            mi_mascota.jugar()
+        case 3:
+            mi_mascota.bañarmascota()
+        case 4:
+            mi_mascota.estado_animo()
+        case 5: 
+            mi_mascota.despedida()
+            break
+        case _:
+            print("Ah no pero no seras cornudo vos no? un numerito de las opciones te estoy pidiendo")
+
+
+
+
+
 
 nombre = input("¿Cómo se llama tu mascota? ")
 mi_mascota = mascotaVirtual(nombre)
@@ -84,4 +160,4 @@ while True:
 # alimenta, juega y muestra su estado de animo
 # repite esta accion al menos 8 veces
 
-# Si te animas crea una interfaz para poder interactuar con tu mascota
+# Si te animas crea una interfaz para poder interactuar con tu mascota 98370ffa51326f55aa7e7993ef0cbaa62d214cd4
