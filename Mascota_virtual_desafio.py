@@ -21,7 +21,7 @@ class mascotaVirtual:
         self.triste = imagen.triste
         self.feliz = imagen.feliz
         self.suciedad = 0
-        pass
+
 
     def alimentar(self):
         self.felicidad -= random.randint(5, 10)
@@ -42,20 +42,17 @@ class mascotaVirtual:
     def jugar(self):
         pass
 
-    def baniarmascota(self):
+    def banarmascota(self):
         if self.suciedad <= 0:
             self.suciedad = 0
             print(imagen.feliz)
-            print('Su mascota esta limpiecita y FILIZ! :>')
+            print('Su mascota esta limpiecita y FELIZ! :>')
 
         if self.suciedad >= 10:
             print(imagen.triste)
             print('oh no, tu mascota esta chuchia :c')  
           
     def estado_animo(self):
-        pass
-
-    def banarse(self):
         pass
 
     def dormir(self):
@@ -68,6 +65,11 @@ class mascotaVirtual:
         pass
  
     def despedida(self):
+        print("Un gusto haber jugado contigo ˇvˇ, nos vemos para la proxima")
+    
+    def muerteinstantanea(self):
+        print(imagen.muerto)
+        print('¿¿¡¡ QUE HAS HECHO!!??, LO ACARICIASTE DEMASIADO FUERTE,  ¡¡LO MATASTEE Ọ⌂Ọ !!')
         pass
 
 # Crear una instancia de MascotaVirtual
@@ -85,7 +87,7 @@ while True:
     print("3. Bañar")
     print("4. Estado de animo")
     print("5. Salir")
-
+    print("6. ♥Acariciar fuerte♥")
     
 
     try:
@@ -100,14 +102,18 @@ while True:
         case 2:
             mi_mascota.jugar()
         case 3:
-            mi_mascota.bañarmascota()
+            mi_mascota.banarmascota()
         case 4:
             mi_mascota.estado_animo()
         case 5: 
             mi_mascota.despedida()
             break
+        case 6:
+            mi_mascota.muerteinstantanea()
+            break
         case _:
             print("Ah no pero no seras cornudo vos no? un numerito de las opciones te estoy pidiendo")
+
 
 
 
