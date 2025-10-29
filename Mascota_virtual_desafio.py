@@ -18,151 +18,172 @@ class mascotaVirtual:
         self.imagen_disgustado = imagen.disgustado
         self.imagen_dormido = imagen.dormido
         self.imagen_enojado = imagen.enojado
-        pass
 
 
 
     def alimentar(self):
+
         self.felicidad -= random.randint(5, 10)
-        if  self.hambre > 100:
-            self.hambre = 100
-        if  self.felicidad < 0:
-            self.felicidad = 0
-            self.hambre <= 0
-            print(f'{imagen.disgustado}')
-            print(f'{nombre}, está lleno, no puede comer más!')
-        else:
-            print(f'{imagen.feliz}')
-            print(f'{nombre}, "ha sido alimentado!"')
-            pass
+        if self.felicidad < 0:
+           self.felicidad = 0
+
+        if self.hambre == 0:                                        
+            print(f"{self.nombre} está lleno, no puede comer más")
+            print(f"{self.imagen_disgustado}")
+            return
+
+        self.hambre -= random.randint(10, 15)
+        if self.hambre < 0:
+            self.hambre = 0
+
+        print(f"{self.imagen_feliz}")
+        print(f"{self.nombre} ha sido alimentado!")
+
 
     def jugar(self):
+        if self.hambre > 70:
+            print("Tiene mucha hambre y no puede jugar.")
+            return
+
         while True:
-            print("\n")
-            print(f"¿A que te gustaría jugar con {nombre}?")
-            print("1. lanzar pelota")
+            print("\n¿A qué te gustaría jugar con", self.nombre, "?")
+            print("1. Lanzar pelota")
             print("2. Correr por el parque")
             print("3. Saltar obstáculos")
             print("4. Dejar de jugar")
-
-
-            try:
-                opcion = int(input(f"¿Qué quieres jugar con {nombre}? "))
-            except  ValueError:
-                print("No loco, no sabes que es un numero?")
+            
+            try:                
+                opcion = int(input(f"¿Qué quieres jugar con {self.nombre}? "))
+            except ValueError:
+                print("Ingresá un número válido.")
                 break
-                
-            match opcion:
 
-                case 1:
-                    print(f"\n {nombre} Tu mascota corre feliz a buscar la pelota")
-                    if  self.felicidad > 100:
-                        self.felicidad = 100
-                    self.felicidad += random.randint(10,15)
-                    if   self.suciedad > 100:
-                        self.suciedad = 100
-                    self.suciedad += random.randint(5,10)
-                    if    self.hambre > 100:
-                        self.hambre = 100
-                    self.hambre +=random.randint(10,15)
-                    if    self.sueño > 100:
-                        self.sueño = 100
-                    self.sueño += random.randint(10,15)
+            if opcion == 4:
+                print(self.imagen_feliz)
+                print(f"A {self.nombre} le gustó mucho jugar, se lo ve agradecido.")
+                break
+            elif opcion in (1, 2, 3):
+                self.felicidad += random.randint(10, 15)
+                if self.felicidad > 100:
+                    self.felicidad = 100
 
-                case 2:
-                    print(f"\n {nombre} corre a toda velocidad por el parque ")
-                    if  self.felicidad > 100:
-                        self.felicidad = 100
-                    self.felicidad += random.randint(10,15)
-                    if  self.suciedad > 100:
-                        self.suciedad = 100
-                    self.hambre += random.randint(10,15)
-                    if  self.hambre > 100:
-                        self.hambre = 100
-                    self.suciedad += random.randint(10,15)
-                    if  self.sueño > 100:
-                        self.sueño = 100
-                    self.sueño += random.randint(10,15)
-                     
-                case 3:
-                    print(f"\n {nombre} salta los obstáculos como un campeón!")
-                    if  self.felicidad > 100:
-                        self.felicidad = 100
-                    self.felicidad += random.randint(10,15)
-                    if  self.suciedad > 100:
-                        self.suciedad = 100
-                    self.hambre += random.randint(10,15)
-                    if  self.hambre > 100:
-                        self.hambre = 100
-                    self.suciedad += random.randint(10,15)
-                    if  self.sueño > 100:
-                        self.sueño = 100
-                    self.sueño += random.randint(10,15)
-                    
-                case 4:
-                    print(f'{imagen.feliz}')
-                    print(f"\n a {nombre} le gusto mucho jugar, se lo ve agradecirdo")
-                    break
-                case _:
-                    print("\n Esa opción no existe ")
-                    pass
+                self.hambre += random.randint(10, 15)
+                if self.hambre > 100:
+                    self.hambre = 100
+
+                self.suciedad += random.randint(5, 10)
+                if self.suciedad > 100:
+                    self.suciedad = 100
+
+                self.sueño += random.randint(10, 15)
+                if self.sueño > 100:
+                    self.sueño = 100
+
+
+                if opcion == 1:
+                    print(f"\n{self.nombre} corre feliz a buscar la pelota.")
+                elif opcion == 2:
+                    print(f"\n{self.nombre} corre a toda velocidad por el parque.")
+                else:
+                    print(f"\n{self.nombre} salta los obstáculos como un campeón!")
+            else:
+                print("Esa opción no existe.")
 
 
     def banarmascota(self):
         self.suciedad -= random.randint(5, 10)
-        if  self.suciedad < 0:
+        if self.suciedad < 0:
             self.suciedad = 0
-            print(imagen.feliz)
-            print('Su mascota esta limpiecita y FELIZ! :>')
-            pass
+        print(self.imagen_feliz)
+        print(f"{self.nombre} está limpiecito y feliz!")
+
 
           
     def estado_animo(self):
-        print(f'\n{nombre} tiene:\n{self.felicidad} puntos de felicidad')
+        print(f'\n{self.nombre} tiene:')
+        print(f'{self.felicidad} puntos de felicidad')
         print(f'{self.hambre} puntos de hambre')
         print(f'{self.suciedad} puntos de mugre')
-        print(f'{self.sueño} puntos de noni')
-        pass
+        print(f'{self.sueño} puntos de sueño')
+
+        if self.hambre >= 70 and self.felicidad <= 50:
+            print(self.imagen_triste)
+            print("Está muy hambrienta y muy triste.")
+        elif self.hambre >= 70:
+            print(self.imagen_disgustado)
+            print("Está muy hambrienta.")
+        elif self.felicidad <= 50:
+            print(self.imagen_triste)
+            print("Está muy triste.")
+        else:
+            print(self.imagen_feliz)
+            print("Está contenta y satisfecha.")
+
 
     def dormir(self):
         self.sueño -= random.randint(5,10)
         if  self.sueño < 0:
             self.sueño = 0
-            self.felicidad += random.randint(10,15)
-            self.sueño == 0
-            print(f'{imagen.enojado}')
-            print(f'{nombre} ya no quiere dormir mas')
-        
-        else: 
-            print(f'{imagen.dormido}')
-            print(nombre, 'Ya descanso plasidamente')
-            pass
+
+        if self.sueño == 0:
+            print(self.imagen_enojado)
+            print(f"{self.nombre} ya no quiere dormir más.")
+        else:
+            self.felicidad += random.randint(10, 15)
+            if self.felicidad > 100:
+                self.felicidad = 100
+            print(self.imagen_dormido)
+            print(f"{self.nombre} ya descansó plácidamente.")
+
 
 
     def pasear(self):
-        pass
+        if self.hambre > 70:
+            print(f"{self.nombre} tiene demasiada hambre y no quiere salir a pasear.")
+            return
+        if self.sueño > 70:
+            print(f"{self.nombre} está demasiado cansado para pasear.")
+            return
+
+        self.felicidad += random.randint(15, 25)
+        if self.felicidad > 100:
+            self.felicidad = 100
+
+        self.hambre += random.randint(10, 15)
+        if self.hambre > 100:
+            self.hambre = 100
+
+        self.suciedad += random.randint(5, 10)
+        if self.suciedad > 100:
+            self.suciedad = 100
+
+        self.sueño += random.randint(10, 15)
+        if self.sueño > 100:
+            self.sueño = 100
+
+        print(self.imagen_feliz)
+        print(f"{self.nombre} salió a pasear y se divirtió mucho.")
 
     def presentacion(self):
-        print (f'¡HOLA!, yo soy {nombre} y voy a ser tu mascota. !DIVIRMANOS¡')
-        pass
+            print (f'¡HOLA!, yo soy {self.nombre} y voy a ser tu mascota. !DIVIRMANOS¡')
+        
  
     def despedida(self): 
-        print(imagen.triste)
-        print("no puedo creer que me estes por dejar, te hechare de menos. \n")
-        pass
+            print(self.imagen_triste)
+            print("no puedo creer que me estes por dejar, te hechare de menos. \n")
+        
     
     def muerteinstantanea(self):
-        print(imagen.muerto)
-        print('¿¿¡¡ QUE HAS HECHO!!??, LO ACARICIASTE DEMASIADO FUERTE,  ¡¡Y MATASTEE A', nombre, 'Ọ⌂Ọ !!')
-        pass
+        print(self.imagen_muerto)
+        print(f'¿¿¡¡ QUE HAS HECHO!!?? LO ACARICIASTE DEMASIADO FUERTE  ¡¡Y MATASTEE A {self.nombre} Ọ⌂Ọ !!')
 
-# Crear una instancia de MascotaVirtual
+
 
 nombre = input("¿Cómo se llama tu mascota?: ")
 mi_mascota = mascotaVirtual(nombre)
 mi_mascota.presentacion()
 
-# Menú interactivo
+
 
 while True:
     print("\n--- Menú ---")
@@ -179,7 +200,7 @@ while True:
         opcion = int(input(f"¿Qué quieres hacer con {nombre}? "))
     except  ValueError:
             print("Ingresá un numerito de las opciones flaco no es muy dificil")
-            break  # vuelve al inicio del bucle si hubo error
+            break  
     
     match opcion:
         case 1:
